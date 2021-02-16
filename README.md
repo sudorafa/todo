@@ -1,10 +1,10 @@
 #  Avaliação do escopo
-1. #### Com base na descrição detalhada do projeto, achei todo escopo claro e coerente.
+1. Com base na descrição detalhada do projeto, achei todo escopo claro e coerente.
 2. Iniciei o readmi e "ponta pé inicial" do projeto sem querer julgar e esclarecer algum ponto, pois como se trata de um teste e tenho familiaridade com tal padrão de projeto e organização para o desenvolvimento.
 3. Se surgir alguma necessidade durante o desenvolvimento entro em contato.
 
 # Estimativas
-## Iniciado em 16/02/2021, o projeto será entregue dia 03/03/2021 se a jornada for segunda à sexta ou 27/02/2021 se for segunda à domingo
+-  Iniciado em 16/02/2021, o projeto será entregue dia 03/03/2021 se a jornada for segunda à sexta ou 27/02/2021 se for segunda à domingo
 
 - [x] Avaliação do escopo e analise para estimativas ``` 3,0h ```
 - [ ] Criação inicial do projeto e ambiente ``` 1,0h ```
