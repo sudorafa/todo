@@ -10,9 +10,8 @@
 - [x] Criação inicial do projeto e ambiente ``` 1,0h ```
 - [ ] Layout do projeto ``` 2,0h ```
 - [x] Criação ambiente API Rest ``` 2,0h ```
-- [ ] Tela Inicial
-    - [ ] Introdução ``` 0,5h ```
-    - [ ] Explicação para usar cada funcionalidades do sitema ``` 0,5h ```
+- [ ] Tela inicial introdução ``` 0,5h ```
+- [ ] Explicação para usar cada funcionalidades do sitema ``` 0,5h ```
 - [ ] Menu
     - [ ] Criar TODO  ``` 3h ```
         * Ao entrar com uma URL qualquer, a mesma deve ser usada para se referenciar a um novo ToDo List
