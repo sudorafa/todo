@@ -7,9 +7,9 @@
 -  Iniciado em 16/02/2021, o projeto será entregue dia 03/03/2021 se a jornada for segunda à sexta ou 27/02/2021 se for segunda à domingo
 
 - [x] Avaliação do escopo e analise para estimativas ``` 3,0h ```
-- [ ] Criação inicial do projeto e ambiente ``` 1,0h ```
+- [x] Criação inicial do projeto e ambiente ``` 1,0h ```
 - [ ] Layout do projeto ``` 2,0h ```
-- [ ] Criação ambiente API Rest ``` 2,0h ```
+- [x] Criação ambiente API Rest ``` 2,0h ```
 - [ ] Tela Inicial
     - [ ] Introdução ``` 0,5h ```
     - [ ] Explicação para usar cada funcionalidades do sitema ``` 0,5h ```
@@ -35,9 +35,11 @@
 
 - Desenvolvido em React.js :rocket:
 - Bibliotecas:
-    - listar
+    - [material-ui](https://github.com/mui-org)
+    - [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+- Usado API Externa -> [mockapi](https://mockapi.io/) que já está configurado igual a estrutura de gravação das informações em ambiente interna da empresa.
 
 
 # Execultando o projeto
-1. Primeiro
-2. Segundo
+1. `yarn` or `npm install`
+2. `yarn start` or `npm start`
