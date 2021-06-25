@@ -4,11 +4,13 @@
 3. Se surgir alguma necessidade durante o desenvolvimento entro em contato.
 
 # Estimativas
+
+## Front
 -  Iniciado em 16/02/2021, o projeto será entregue dia 03/03/2021 se a jornada for segunda à sexta ou 27/02/2021 se for segunda à domingo
 
 - [x] Avaliação do escopo e analise para estimativas ``` 3,0h ```
 - [x] Criação inicial do projeto e ambiente ``` 1,0h ```
-- [ ] Layout do projeto ``` 2,0h ```
+- [x] Layout do projeto ``` 2,0h ```
 - [x] Criação ambiente API Rest ``` 2,0h ```
 - [ ] Tela inicial introdução ``` 0,5h ```
 - [ ] Explicação para usar cada funcionalidades do sitema ``` 0,5h ```
@@ -29,6 +31,16 @@
     - [ ] Teste de regressão  ``` 2h ```
     - [ ] Ajustes erros encontrados no teste de regressão  ``` 2h ```
 
+- Evolutivo:
+- [ ] Criar camada de usuário front e back para dinâmica nos TODOS
+- [ ] Criação de colunas dinâmicas
+
+
+## Back
+
+- [ ] Estrutura ``` 1,0h ```
+- [ ] CRUD ``` 5,0h ```
+- [ ] Testes ``` 2,0h ```
 
 # Tecnologias
 
