@@ -4,10 +4,10 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import AppBarApp from './components/appBar'
-import menus from './constants/menu'
-import Copyright from './components/footer'
-import Home from './screen/home'
+import AppBarApp from './components/app-bar';
+import menus from './constants/menu';
+import Copyright from './components/footer';
+import Home from './screen/home';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,35 +43,36 @@ const getTitleMenu = (menu) => {
     default:
       return 'Tarefas';
   }
-}
+};
 
 export default function App() {
   const classes = useStyles();
   const [menu, setMenu] = React.useState(menus.TODO);
 
-  const handleMenu = menu => {
-    setMenu(menu);
+  const handleMenu = (menuSelected) => {
+    setMenu(menuSelected);
   };
 
   return (
+    
     <div className={classes.root}>
       <CssBaseline />
-      <AppBarApp title={getTitleMenu(menu)} handleMenu={handleMenu}/>
+      <AppBarApp title={getTitleMenu(menu)} handleMenu={handleMenu} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        { menu === menus.TODO &&
-          <Home />
-        }
-        { menu === menus.ABOUT &&
+        { menu === menus.TODO
+          && <Home />}
+        { menu === menus.ABOUT
+          && (
           <Container maxWidth="lg" className={classes.container}>
             SOBRE
           </Container>
-        }
+          )}
 
         <Box pt={4}>
           <Copyright />
         </Box>
-        </main>
+      </main>
     </div>
   );
 }
@@ -80,5 +81,5 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
