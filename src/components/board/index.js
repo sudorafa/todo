@@ -15,26 +15,30 @@ import {
   SubmitCardButton,
   CancelCardButton,
 } from './styles';
+import { post } from "../../services/api";
 
-const Board = ({ todoSelected }) => {
+const Board = ({ todoSelected, updateTodos }) => {
   const [isAddSectionInputActive, setAddSectionInputActive] = useState(false);
 
   const [addSectionInpuText, setAddSectionInputText] = useState('');
   const [boards, setBoards] = useState([]);
 
+  const createTask = () => {
+    setAddSectionInputActive(true)
+  }
+
   useEffect(() => {
     if(todoSelected.tasks) setBoards(todoSelected.tasks);
   }, [todoSelected.tasks])
   
-  const onAddSectionSubmit = () => {
+  const onAddSectionSubmit = async () => {
     const currentList = boards || [];
-    if (addSectionInpuText) {
-      
-      // Chamar back para add card
+    if(addSectionInpuText) {
       setAddSectionInputText('');
-      const task = { description: addSectionInpuText };
-
-      setBoards([...currentList, task]);
+      const { task } = await post('task', { description: addSectionInpuText, todoId: todoSelected._id });
+      const newBoard = [...currentList, task];
+      setBoards(newBoard);
+      updateTodos(todoSelected._id);
     }
   };
 
@@ -81,7 +85,7 @@ const Board = ({ todoSelected }) => {
             </>
           ) : (
             <>
-              <AddSectionLink onClick={() => setAddSectionInputActive(true)}>
+              <AddSectionLink onClick={createTask}>
                 <AddSectionLinkSpan>
                   Criar Tarefa
                 </AddSectionLinkSpan>

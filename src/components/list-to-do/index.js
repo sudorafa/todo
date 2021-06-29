@@ -25,7 +25,7 @@ export default function ListToDo({ todos, selectTodoMenu }) {
     
     <MenuList>
       {!!todos && listTodos.map((todo, index) => (
-        <MenuItem onClick={() => selectTodoMenu(todo)} key={todo._id}>
+        <MenuItem onClick={() => selectTodoMenu(todo)} key={index}>
           <Grid container >
             <Grid item xs={12} md={8} lg={9}>
               { todo.description } 

@@ -13,31 +13,41 @@ import { get, post } from "../../services/api";
 
 export default function Home() {
   const classes = useStyles();
-  const [todos, setTodos] = useState([]);
-  const [todoSelected, setTodoSelected] = useState({});
+  const [todosState, setTodos] = useState([]);
+  const [todoSelected, setTodoSelected] = useState(null);
   const [todoText, setTodoText] = useState("");
 
   const selectTodoMenu = todo => {
     setTodoSelected(todo);
   }
 
+  const updateTodos = async id => {
+    try {
+      const { todos } = await get('todo');
+      setTodos(todos);
+    } catch (error) {
+      alert("Ocorreu um erro ao buscar os todos");
+    }
+  }
+
   useEffect(() => {
     async function getTodos() {
       try {
-        const { todos } = await get('todo');
-        setTodos(todos);
-        setTodoSelected(todos[0])
+        if (!todoSelected) {
+          const { todos } = await get('todo');
+          setTodos(todos);
+        }
       } catch (error) {
         alert("Ocorreu um erro ao buscar os todos");
       }
     }
     getTodos();
-  }, []);
+  }, [todoSelected]);
 
   const createTodo = async () => {
     if(todoText) {
       const { todo } = await post('todo', { description: todoText });
-      setTodos([...todos, todo])
+      setTodos([...todosState, todo])
     }
   }
 
@@ -68,14 +78,14 @@ export default function Home() {
         <Grid item xs={12} md={8} lg={9}>
           <Paper >
           { todoSelected?._id &&
-            <Board todoSelected={todoSelected} /> }
+            <Board todoSelected={todoSelected} updateTodos={updateTodos} /> }
           </Paper>
         </Grid>
         {/* Listagem de To Do */}
         <Grid item xs={12} md={4} lg={3}>
           <Paper>
             <Box paddingLeft={2} pt={2}>Lista de tarefas:</Box>
-            <ListToDo todos={todos} selectTodoMenu={selectTodoMenu} />
+            <ListToDo todos={todosState} selectTodoMenu={selectTodoMenu} />
           </Paper>
         </Grid>
       </Grid>
