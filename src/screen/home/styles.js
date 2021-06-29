@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+
 export const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
@@ -12,6 +13,12 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 20,
   },
-  }));
+  name: {
+    width: 400,
+  },
+  button: {
+    marginLeft: 20,
+  },
+}));

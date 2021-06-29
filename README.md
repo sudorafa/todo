@@ -11,25 +11,23 @@
 - [x] Avaliação do escopo e analise para estimativas ``` 3,0h ```
 - [x] Criação inicial do projeto e ambiente ``` 1,0h ```
 - [x] Layout do projeto ``` 2,0h ```
-- [x] Criação ambiente API Rest ``` 2,0h ```
 - [ ] Tela inicial introdução ``` 0,5h ```
 - [ ] Explicação para usar cada funcionalidades do sitema ``` 0,5h ```
-- [ ] Menu
-    - [ ] Criar TODO  ``` 3h ```
-        * Ao entrar com uma URL qualquer, a mesma deve ser usada para se referenciar a um novo ToDo List
-        * Após a criação, o usuário deve ser enviado a tela de edição da ToDo
-    - [ ] Editar TODO
-        - [ ] Criar um novo item ``` 1h ```
-        - [ ] Editar um item existente ``` 1h ```
-        - [ ] Apagar um item existente ``` 1h ```
-        - [ ] Organizar o item como sub-item de um item existente ``` 2,0h ```
-        - [ ] Mover um sub-item para fora do item pai, transformando-o em um outro item pai ou um sub-item de outro item; ``` 2,0h ```
-    - [ ] Excluir TODO ``` 1,0h ```
-        - Como usuário posso excluir um ToDo que seja meu
-    - [ ] Compartilhar TODO ``` 1,0h ```
-        * Como usuário gostaria de compartilhar a URL do ToDo que estou editando por email para uma ou mais pessoas
-    - [ ] Teste de regressão  ``` 2h ```
-    - [ ] Ajustes erros encontrados no teste de regressão  ``` 2h ```
+- [ ] Criar TODO  ``` 3h ```
+    * Ao entrar com uma URL qualquer, a mesma deve ser usada para se referenciar a um novo ToDo List
+    * Após a criação, o usuário deve ser enviado a tela de edição da ToDo
+- [ ] Editar TODO
+    - [ ] Criar um novo item ``` 1h ```
+    - [ ] Editar um item existente ``` 1h ```
+    - [ ] Apagar um item existente ``` 1h ```
+    - [ ] Organizar o item como sub-item de um item existente ``` 2,0h ```
+    - [ ] Mover um sub-item para fora do item pai, transformando-o em um outro item pai ou um sub-item de outro item; ``` 2,0h ```
+- [ ] Excluir TODO ``` 1,0h ```
+    - Como usuário posso excluir um ToDo que seja meu
+- [ ] Compartilhar TODO ``` 1,0h ```
+    * Como usuário gostaria de compartilhar a URL do ToDo que estou editando por email para uma ou mais pessoas
+- [ ] Teste de regressão  ``` 2h ```
+- [ ] Ajustes erros encontrados no teste de regressão  ``` 2h ```
 
 - Evolutivo:
 - [ ] Criar camada de usuário front e back para dinâmica nos TODOS
