@@ -13,7 +13,7 @@ import {
   SubmitCardButton,
   CancelCardButton,
 } from './styles';
-import { post } from "../../services/api";
+import { post, deleteOne } from "../../services/api";
 
 const Board = ({ todoSelected, updateTodos }) => {
   const [isAddSectionInputActive, setAddSectionInputActive] = useState(false);
@@ -36,9 +36,17 @@ const Board = ({ todoSelected, updateTodos }) => {
       const { task } = await post('task', { description: addSectionInpuText, todoId: todoSelected._id });
       const newBoard = [...currentList, task];
       setBoards(newBoard);
-      updateTodos(todoSelected._id);
+      updateTodos();
     }
   };
+
+  const deleteTask = async (task, index) => {
+    await deleteOne('task/'+task._id);
+    var newList = boards;
+    newList.splice(index, 1);
+    setBoards(newList);
+    updateTodos();
+  }
 
   return (
     <BoardContainer>
@@ -57,7 +65,7 @@ const Board = ({ todoSelected, updateTodos }) => {
       >
         {boards.length > 0
           && boards.map((item, index) => (
-            <CardContainer item={item} key={index} boards={boards} />
+            <CardContainer item={item} index={index} boards={boards} deleteTask={deleteTask}/>
           ))}
       </Container>
       <AddSectionDiv>

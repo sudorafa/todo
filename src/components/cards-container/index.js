@@ -3,6 +3,8 @@ import { Container, Draggable } from 'react-smooth-dnd';
 import sortBy from 'lodash/sortBy';
 import PosCalculation from '../../tools/pos_calculation';
 import Card from '../card';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Grid from '@material-ui/core/Grid';
 
 import {
   Wrapper,
@@ -21,7 +23,7 @@ import {
   CancelCardButton,
 } from './styles';
 
-const CardContainer = ({ item, boards }) => {
+const CardContainer = ({ item, boards, deleteTask, index }) => {
   const [cards, setCards] = useState(null);
   const [isTempCardActive, setTempCardActive] = useState(false);
   const [cardText, setCardText] = useState('');
@@ -103,11 +105,22 @@ const CardContainer = ({ item, boards }) => {
 
   return (
     
-    <Draggable key={item?.id}>
+    <Draggable key={item?._id}>
       <Wrapper className="card-container">
         <WrappedSection>
           <CardContainerHeader className="column-drag-handle">
-            <ContainerContainerTitle>{item?.description}</ContainerContainerTitle>
+            <ContainerContainerTitle>
+            <Grid container>
+              <Grid item xs={12} md={8} lg={9}>
+                {item?.description}
+              </Grid>
+              <Grid item xs={12} md={4} lg={3}>
+              <AddCardButtonDiv onClick={() => deleteTask(item, index)}><DeleteIcon /></AddCardButtonDiv>
+              </Grid>
+            </Grid>
+            
+              
+            </ContainerContainerTitle>
           </CardContainerHeader>
           <CardsContainer>
             <Container

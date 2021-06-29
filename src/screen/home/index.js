@@ -21,7 +21,7 @@ export default function Home() {
     setTodoSelected(todo);
   }
 
-  const updateTodos = async id => {
+  const updateTodos = async () => {
     try {
       const { todos } = await get('todo');
       setTodos(todos);
