@@ -16,45 +16,25 @@ import {
   CancelCardButton,
 } from './styles';
 
-const Board = () => {
+const Board = ({ todoSelected }) => {
   const [isAddSectionInputActive, setAddSectionInputActive] = useState(false);
 
   const [addSectionInpuText, setAddSectionInputText] = useState('');
   const [boards, setBoards] = useState([]);
-  const [data, setData] = useState([]);
-  const [posChanged, setPosChanged] = useState([]);
-  const [sectionAdded, setSectionAdded] = useState([]);
 
-  const onColumnDrop = ({ removedIndex, addedIndex, payload }) => {
-    if (data) {
-      const updatePOS = PosCalculation(
-        removedIndex,
-        addedIndex,
-        data.fetchSections,
-      );
-      const newBoards = boards.map((board) => {
-        if (board.id === payload.id) {
-          return { ...board, pos: updatePOS };
-        }
-        return board;
-      });
-
-      const sortedBoards = sortBy(newBoards, [
-        (board) => board.pos,
-      ]);
-
-      // Chamar back para atualizar aqui
-      setBoards([...sortedBoards]);
-    }
-  };
-
+  useEffect(() => {
+    if(todoSelected.tasks) setBoards(todoSelected.tasks);
+  }, [todoSelected.tasks])
+  
   const onAddSectionSubmit = () => {
     const currentList = boards || [];
     if (addSectionInpuText) {
-      setBoards([...currentList, {name: addSectionInpuText}]);
       
       // Chamar back para add card
       setAddSectionInputText('');
+      const task = { description: addSectionInpuText };
+
+      setBoards([...currentList, task]);
     }
   };
 
@@ -62,7 +42,6 @@ const Board = () => {
     <BoardContainer>
       <Container
         orientation="horizontal"
-        onDrop={onColumnDrop}
         onDragStart={() => {
           console.log('on drag start');
         }}

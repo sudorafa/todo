@@ -9,7 +9,7 @@ const Card = ({ card }) => (
   
   <Draggable key={card.id}>
     <CardContainer className="card">
-      <CardContent>{card.name}</CardContent>
+      <CardContent>{card.description}</CardContent>
     </CardContainer>
   </Draggable>
 );

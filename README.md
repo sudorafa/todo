@@ -13,7 +13,7 @@
 - [x] Layout do projeto ``` 2,0h ```
 - [ ] Tela inicial introdução ``` 0,5h ```
 - [ ] Explicação para usar cada funcionalidades do sitema ``` 0,5h ```
-- [ ] Criar TODO  ``` 3h ```
+- [x] Criar TODO  ``` 3h ```
     * Ao entrar com uma URL qualquer, a mesma deve ser usada para se referenciar a um novo ToDo List
     * Após a criação, o usuário deve ser enviado a tela de edição da ToDo
 - [ ] Editar TODO
@@ -36,8 +36,8 @@
 
 ## Back
 
-- [ ] Estrutura ``` 1,0h ```
-- [ ] CRUD ``` 5,0h ```
+- [x] Estrutura ``` 1,0h ```
+- [x] CRUD ``` 5,0h ```
 - [ ] Testes ``` 2,0h ```
 
 # Tecnologias

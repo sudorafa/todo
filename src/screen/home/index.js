@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import clsx from 'clsx';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
@@ -10,10 +9,38 @@ import Box from '@material-ui/core/Box';
 import { useStyles } from './styles';
 import ListToDo from '../../components/list-to-do';
 import Board from '../../components/board';
+import { get, post } from "../../services/api";
 
 export default function Home() {
   const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const [todos, setTodos] = useState([]);
+  const [todoSelected, setTodoSelected] = useState({});
+  const [todoText, setTodoText] = useState("");
+
+  const selectTodoMenu = todo => {
+    setTodoSelected(todo);
+  }
+
+  useEffect(() => {
+    async function getTodos() {
+      try {
+        const { todos } = await get('todo');
+        setTodos(todos);
+        setTodoSelected(todos[0])
+      } catch (error) {
+        alert("Ocorreu um erro ao buscar os todos");
+      }
+    }
+    getTodos();
+  }, []);
+
+  const createTodo = async () => {
+    if(todoText) {
+      const { todo } = await post('todo', { description: todoText });
+      setTodos([...todos, todo])
+    }
+  }
+
   return (
     
     <Container maxWidth="lg" className={classes.container}>
@@ -22,13 +49,14 @@ export default function Home() {
           <Paper className={classes.paper}>
             Criar lista de tarefas:
             <Box pt={4}>
-              <Input placeholder="Nome" className={classes.name} inputProps={{ 'aria-label': 'nome' }} />
+              <Input onChange={(e) => { setTodoText(e.target.value); }} placeholder="Nome" className={classes.name} inputProps={{ 'aria-label': 'nome' }} />
               <Button
                 variant="contained"
                 color="primary"
                 size="small"
                 className={classes.button}
                 startIcon={<SaveIcon />}
+                onClick={createTodo}
               >
                 Criar
               </Button>
@@ -39,14 +67,15 @@ export default function Home() {
         {/* Tarefa para editar */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper >
-            <Board />
+          { todoSelected?._id &&
+            <Board todoSelected={todoSelected} /> }
           </Paper>
         </Grid>
         {/* Listagem de To Do */}
         <Grid item xs={12} md={4} lg={3}>
           <Paper>
             <Box paddingLeft={2} pt={2}>Lista de tarefas:</Box>
-            <ListToDo />
+            <ListToDo todos={todos} selectTodoMenu={selectTodoMenu} />
           </Paper>
         </Grid>
       </Grid>

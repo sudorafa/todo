@@ -107,7 +107,7 @@ const CardContainer = ({ item, boards }) => {
     e.preventDefault();
     const currentCards = cards || [];
     if (cardText) {
-      setCards([...currentCards, {name: cardText}]);
+      setCards([...currentCards, {description: cardText}]);
       
       // Chamar back para add card
       setCardText('');
@@ -120,7 +120,7 @@ const CardContainer = ({ item, boards }) => {
       <Wrapper className="card-container">
         <WrappedSection>
           <CardContainerHeader className="column-drag-handle">
-            <ContainerContainerTitle>{item?.title}</ContainerContainerTitle>
+            <ContainerContainerTitle>{item?.description}</ContainerContainerTitle>
           </CardContainerHeader>
           <CardsContainer>
             <Container
