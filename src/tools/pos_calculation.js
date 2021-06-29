@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function (removedIndex, addedIndex, arr) {
   let pos;
   if (addedIndex === arr.length - 1) {

@@ -26,24 +26,11 @@ const CardContainer = ({ item, boards }) => {
   const [isTempCardActive, setTempCardActive] = useState(false);
   const [cardText, setCardText] = useState('');
 
-  const [cardAdded, setSardAdded] = useState([]);
-  const [cardPosChange, setCardPosChange] = useState([]);
-
   useEffect(() => {
     if (item && item?.cards) {
       setCards(item?.cards);
     }
   }, [item]);
-
-  useEffect(() => {
-    if (cardAdded) {
-      if (item?.id === cardAdded.sectionId) {
-        setCards(item?.cards?.concat(cardAdded));
-
-        setTempCardActive(false);
-      }
-    }
-  }, [cardAdded, item?.cards, item?.id]);
 
   const onCardDrop = (columnId, addedIndex, removedIndex, payload) => {
     let updatedPOS;

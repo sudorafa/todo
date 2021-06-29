@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from 'react-smooth-dnd';
-import sortBy from 'lodash/sortBy';
 import CardContainer from '../cards-container';
-import PosCalculation from '../../tools/pos_calculation';
 import {
   BoardContainer,
   AddSectionDiv,
