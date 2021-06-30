@@ -45,7 +45,7 @@
 - Desenvolvido em React.js :rocket:
 - Bibliotecas:
     - [material-ui](https://github.com/mui-org)
-    - [react-smooth-dnd]https://www.npmjs.com/package/react-smooth-dnd)
+    - [react-smooth-dnd](https://www.npmjs.com/package/react-smooth-dnd)
 - Usado API implementada no repositorio  -> [git.vibra](http://git.vibbra.com.br/rafael-1612810291/todo-api)
 
 
