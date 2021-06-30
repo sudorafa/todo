@@ -18,3 +18,8 @@ export const deleteOne = async (url) => {
   const res = await api.delete(url);
   return await res.data;
 }
+
+export const update = async (url, body) => {
+  const res = await api.put(url, body);
+  return await res.data;
+}

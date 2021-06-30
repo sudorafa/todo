@@ -12,6 +12,8 @@ export const BoardContainer = styled.div`
   padding: 5px;
   align-items: flex-start;
   max-width: 900px;
+  min-width: 900px;
+  min-height: 700px;
 `;
 
 export const CardHorizontalContainer = styled.div``;

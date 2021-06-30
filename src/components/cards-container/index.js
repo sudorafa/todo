@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Draggable } from 'react-smooth-dnd';
-import sortBy from 'lodash/sortBy';
-import PosCalculation from '../../tools/pos_calculation';
 import Card from '../card';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Grid from '@material-ui/core/Grid';
@@ -23,9 +21,9 @@ import {
   CancelCardButton,
 } from './styles';
 
-import { post, deleteOne } from "../../services/api";
+import { post, deleteOne, update } from "../../services/api";
 
-const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
+const CardContainer = ({ item, deleteTask, index, updateTodos }) => {
   const [cards, setCards] = useState(null);
   const [isTempCardActive, setTempCardActive] = useState(false);
   const [cardText, setCardText] = useState('');
@@ -37,57 +35,9 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
   }, [item]);
 
   const onCardDrop = (columnId, addedIndex, removedIndex, payload) => {
-    let updatedPOS;
-    if (addedIndex !== null && removedIndex !== null) {
-      const boardCards = boards.filter((p) => p.id === columnId)[0];
-
-      updatedPOS = PosCalculation(removedIndex, addedIndex, boardCards?.cards);
-
-      let newCards = cards?.map((item) => {
-        if (item?.id === payload.id) {
-          return {
-            ...item,
-            pos: updatedPOS,
-          };
-        }
-        return item;
-      });
-      newCards = sortBy(newCards, (item) => item?.pos);
-
-      console.log('newCards', newCards);
-      setCards(newCards);
-
-      // Chamar back para atualziar card
-    } else if (addedIndex !== null) {
-      const newColumn = boards.filter((p) => p.id === columnId)[0];
-
-      if (addedIndex === 0) {
-        updatedPOS = newColumn.cards[0].pos / 2;
-      } else if (addedIndex === newColumn.cards?.length) {
-        updatedPOS = newColumn.cards[newColumn.cards?.length - 1].pos + 16384;
-      } else {
-        const afterCardPOS = newColumn.cards[addedIndex].pos;
-        const beforeCardPOS = newColumn.cards[addedIndex - 1].pos;
-
-        updatedPOS = (afterCardPOS + beforeCardPOS) / 2;
-      }
-
-      let newCards = cards?.map((item) => {
-        if (item?.id === payload.id) {
-          return {
-            ...item,
-            pos: updatedPOS,
-          };
-        }
-        return item;
-      });
-
-      newCards = sortBy(newCards, (item) => item?.pos);
-
-      setCards(newCards);
-
-      // Chamar back para atualziar card
-    }
+    if (removedIndex !== null && addedIndex !== null ) {  console.log('rafa'); return;}
+    else if (removedIndex !== null) deleteSubTask(payload, removedIndex, false);
+    else if (addedIndex !== null) updateSubTask(payload, columnId);
   };
 
   const onAddButtonClick = () => {
@@ -96,22 +46,35 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
 
   const onAddCardSubmit = async (e) => {
     e.preventDefault();
-    const currentCards = cards || [];
     if (cardText) {
-      const { subTask } = await post('subTask', { description: cardText, taskId: item._id });
-      const newTasks = [...currentCards, subTask];
-      setCards(newTasks);
-      setCardText('');
-      updateTodos();
+      createSubTask(cardText, item._id);
     }
   };
 
-  const deleteSubTask = async (subTask, index) => {
-    await deleteOne('subTask/'+subTask._id);
+  const createSubTask = async (text, taskId) => {
+    const currentCards = cards || [];
+    const { subTask } = await post('subTask', { description: text, taskId });
+    const newTasks = [...currentCards, subTask];
+    setCards(newTasks);
+    setCardText('');
+    updateTodos();
+  }
+
+  const updateSubTask = (subTask, taskId) => {
+    const currentCards = cards || [];
+    update('subTask/'+subTask._id, { description: subTask.description, taskId });
+    const newTasks = [...currentCards, subTask];
+    setCards(newTasks);
+    setCardText('');
+    updateTodos();
+  }
+
+  const deleteSubTask = (subTask, index, update = true) => {
+    if (update) deleteOne('subTask/'+subTask._id);
     var newList = cards;
     newList.splice(index, 1);
     setCards(newList);
-    updateTodos();
+    if (update) updateTodos();
   }
 
   return (
@@ -138,8 +101,7 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
               // onDragStart={(e) => console.log("Drag Started")}
               // onDragEnd={(e) => console.log("drag end", e)}
               onDrop={(e) => {
-                console.log('card', e);
-                onCardDrop(item?.id, e.addedIndex, e.removedIndex, e.payload);
+                onCardDrop(item?._id, e.addedIndex, e.removedIndex, e.payload);
               }}
               dragClass="card-ghost"
               dropClass="card-ghost-drop"
@@ -158,7 +120,7 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
               }}
               dropPlaceholderAnimationDuration={200}
             >
-              {cards?.map((card, index) => (
+              {cards && cards?.map((card, index) => (
                 <Card key={card.id} card={card} deleteSubTask={deleteSubTask} index={index}/>
               ))}
             </Container>
@@ -183,7 +145,7 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
                   />
                   <CancelCardButton
                     type="button"
-                    value="Cancelar"
+                    value="Fechar"
                     onClick={() => setTempCardActive(false)}
                   />
                 </SubmitCardButtonDiv>

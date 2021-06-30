@@ -76,14 +76,13 @@ export default function Home() {
         </Grid>
         {/* Tarefa para editar */}
         <Grid item xs={12} md={8} lg={9}>
-          <Paper >
           { todoSelected?._id &&
-            <Board todoSelected={todoSelected} updateTodos={updateTodos} /> }
-          </Paper>
+            <Board todoSelected={todoSelected} updateTodos={updateTodos} />
+          }
         </Grid>
         {/* Listagem de To Do */}
         <Grid item xs={12} md={4} lg={3}>
-          <Paper>
+          <Paper className={classes.paper}>
             <Box paddingLeft={2} pt={2}>Lista de tarefas:</Box>
             <ListToDo todos={todosState} selectTodoMenu={selectTodoMenu} />
           </Paper>

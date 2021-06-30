@@ -65,7 +65,7 @@ const Board = ({ todoSelected, updateTodos }) => {
       >
         {boards.length > 0
           && boards.map((item, index) => (
-            <CardContainer item={item} index={index} boards={boards} deleteTask={deleteTask} updateTodos={updateTodos} />
+            <CardContainer item={item} index={index} deleteTask={deleteTask} updateTodos={updateTodos} />
           ))}
       </Container>
       <AddSectionDiv>
@@ -84,7 +84,7 @@ const Board = ({ todoSelected, updateTodos }) => {
                 />
                 <CancelCardButton
                     type="button"
-                    value="Cancelar"
+                    value="Fechar"
                     onClick={() => setAddSectionInputActive(false) }
                   />
               </SubmitCardButtonDiv>
