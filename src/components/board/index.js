@@ -65,7 +65,7 @@ const Board = ({ todoSelected, updateTodos }) => {
       >
         {boards.length > 0
           && boards.map((item, index) => (
-            <CardContainer item={item} index={index} boards={boards} deleteTask={deleteTask}/>
+            <CardContainer item={item} index={index} boards={boards} deleteTask={deleteTask} updateTodos={updateTodos} />
           ))}
       </Container>
       <AddSectionDiv>

@@ -23,14 +23,16 @@ import {
   CancelCardButton,
 } from './styles';
 
-const CardContainer = ({ item, boards, deleteTask, index }) => {
+import { post, deleteOne } from "../../services/api";
+
+const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
   const [cards, setCards] = useState(null);
   const [isTempCardActive, setTempCardActive] = useState(false);
   const [cardText, setCardText] = useState('');
 
   useEffect(() => {
-    if (item && item?.cards) {
-      setCards(item?.cards);
+    if (item && item?.subTasks) {
+      setCards(item?.subTasks);
     }
   }, [item]);
 
@@ -92,14 +94,15 @@ const CardContainer = ({ item, boards, deleteTask, index }) => {
     setTempCardActive(true);
   };
 
-  const onAddCardSubmit = (e) => {
+  const onAddCardSubmit = async (e) => {
     e.preventDefault();
     const currentCards = cards || [];
     if (cardText) {
-      setCards([...currentCards, {description: cardText}]);
-      
-      // Chamar back para add card
+      const { subTask } = await post('subTask', { description: cardText, taskId: item._id });
+      const newTasks = [...currentCards, subTask];
+      setCards(newTasks);
       setCardText('');
+      updateTodos();
     }
   };
 
