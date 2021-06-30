@@ -106,6 +106,14 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
     }
   };
 
+  const deleteSubTask = async (subTask, index) => {
+    await deleteOne('subTask/'+subTask._id);
+    var newList = cards;
+    newList.splice(index, 1);
+    setCards(newList);
+    updateTodos();
+  }
+
   return (
     
     <Draggable key={item?._id}>
@@ -121,8 +129,6 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
               <AddCardButtonDiv onClick={() => deleteTask(item, index)}><DeleteIcon /></AddCardButtonDiv>
               </Grid>
             </Grid>
-            
-              
             </ContainerContainerTitle>
           </CardContainerHeader>
           <CardsContainer>
@@ -152,8 +158,8 @@ const CardContainer = ({ item, boards, deleteTask, index, updateTodos }) => {
               }}
               dropPlaceholderAnimationDuration={200}
             >
-              {cards?.map((card) => (
-                <Card key={card.id} card={card} />
+              {cards?.map((card, index) => (
+                <Card key={card.id} card={card} deleteSubTask={deleteSubTask} index={index}/>
               ))}
             </Container>
             {isTempCardActive ? (
