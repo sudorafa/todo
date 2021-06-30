@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://todo-api-rafa.herokuapp.com/"
+  baseURL: "https://todo-api-rafa.herokuapp.com/"
 });
 
 export const get = async url => {
