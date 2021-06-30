@@ -65,7 +65,7 @@ export default function App() {
         { menu === menus.ABOUT
           && (
           <Container maxWidth="lg" className={classes.container}>
-            SOBRE
+            Essa aplicação permite que você crie listas de tarefas, onde você consegue cadastrar tarefas e subtarefas, ainda pode contar com a transição de subtarefas entre tarefas.
           </Container>
           )}
 
